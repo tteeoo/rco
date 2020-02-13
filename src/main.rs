@@ -1,4 +1,4 @@
-mod error;
+mod error_exits;
 mod parse;
 
 /*struct Conf {
@@ -7,11 +7,15 @@ mod parse;
 }*/
 
 fn main() {
-    let obj_count = match parse::line_count("/home/theo/Repos/rco/src/foow.csv") {
-        Err(parse::error::Errs::ACCESS) => return error::access(),
-        Ok(x) =>  x,
+    let obj_count = match parse::line_count("/home/theo/Repos/rco/src/objects.csv") {
+        Err(_why) => 0,
+        Ok(x) => x,
     };
-    println!("{}", obj_count);
+    if obj_count == 0 {
+        error_exits::obj_file();
+    }
+    println!("{:?}", obj_count);
+
     //parse::go();
 }
 
