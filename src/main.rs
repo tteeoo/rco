@@ -5,16 +5,18 @@
 */
 
 mod error_exits;
-mod parse;
+mod parse_funcs;
 
-/*struct Conf {
+/* For use later
+ 
+struct Conf {
     editor: &str,
     color: bool,
 }*/
 
 fn main() {
     // Atempts to get the amount of objects (really just the amount of lines in the objects file)
-    let obj_count = match parse::line_count("/home/theo/Repos/rco/src/objects.csv") {
+    let obj_count = match parse_funcs::line_count("/home/theo/rco/src/objects.csv") {
 
         // If there was an error, it sets the object count to 0, if not it sets obj_count correctly
         Err(_why) => 0,
@@ -31,13 +33,13 @@ fn main() {
     // Fore debug purposes, prints the obj_count
     println!("{}", obj_count);
 
-    // Creates a vector of arrays
-    // A vector containing 3 strings in an array, for the 3 values of an object
-
-    let objs = match parse::go("/home/theo/Repos/rco/src/objects.csv") {
-        Err(_why) => panic!(),
+    // Runs get_records() on objects file and get vector of arrays representing objects
+    let objs = match parse_funcs::get_records("/home/theo/rco/src/objects.csv") {
+        Err(why) => panic!("{}", why),
         Ok(x) => x,
     };
+
+    // Prints all object arrays (debug purposes)
     for i in objs {
         println!("{:?}", i);
     }
