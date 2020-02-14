@@ -6,47 +6,46 @@
 
 mod error_exits;
 mod parse_funcs;
+extern crate dirs;
 
 fn main() {
-    // Atempts to get the amount of objects (really just the amount of lines in the objects file)
-    let obj_count = match parse_funcs::line_count("/home/theo/Repos/rco/src/objects.csv") {
 
-        // If there was an error, it sets the object count to 0, if not it sets obj_count correctly
+    // VARIABLE FETCH
+    let conf_dir_path = match dirs::config_dir() {
+        Some(x) => x,
+        None => panic!()
+    };
+    let conf_dir = match conf_dir_path.to_str() {
+        Some(text) => text,
+        None => panic!()
+    };
+    let obj_name = conf_dir.to_owned() + "/rco/objects.csv";
+    let conf_name = conf_dir.to_owned() + "/rco/config.csv";
+    let obj_count = match parse_funcs::line_count(&obj_name) {
         Err(_why) => 0,
         Ok(x) => x - 1,
     };
-
-    // If obj_count is 0, an error is thrown, exiting the program
-    // This is caused either by there being no objects (such that the program will not work)
-    // Or because there was an error reading the file, as described above
     if obj_count <= 0 {
         error_exits::obj_file();
     }
-
-    // Fore debug purposes, prints the obj_count
-    println!("{}", obj_count);
-
-    // Runs get_records() on objects file and get vector of arrays representing objects
-    let objs = match parse_funcs::get_records("/home/theo/Repos/rco/src/objects.csv") {
+    let objs = match parse_funcs::get_records(&obj_name) {
         Err(why) => panic!("{}", why),
         Ok(x) => x,
     };
-
-    let confs = match parse_funcs::get_records("/home/theo/Repos/rco/src/config.csv") {
+    let confs = match parse_funcs::get_records(&conf_name) {
         Err(why) => panic!("{}", why),
         Ok(x) => x,
     };
+    let confs = parse_funcs::make_conf(&confs);
 
-    // Prints all object arrays (debug purposes)
+
+    
+    // DEBUG
     for i in &objs {
         println!("{:?}", i);
     }
-    for i in &confs {
-        println!("{:?}", i);
-    }
-
-    let confs = parse_funcs::make_conf(&confs);
-
+    println!("{}", obj_count);
+    println!("{:?}", conf_dir);
     println!("{:?}", confs.editor);
 }
 
