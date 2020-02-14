@@ -7,6 +7,8 @@
 mod error_exits;
 mod parse_funcs;
 extern crate dirs;
+use std::path::Path;
+use std::io::Write;
 
 fn main() {
 
@@ -19,6 +21,35 @@ fn main() {
         Some(text) => text,
         None => panic!()
     };
+    if !(Path::new(&(conf_dir.to_owned() + "/rco")).exists()) {
+        println!("No config directory found, making one (~/.config/rco)");
+        match parse_funcs::make_dir(&(conf_dir.to_owned() + "/rco")) {
+            Ok(()) => (),
+            Err(why) => panic!(why)
+        }
+    }
+    if !(Path::new(&(conf_dir.to_owned() + "/rco/objects.csv")).exists()) {
+        println!("No object file found, making one (~/.config/rco/objects.csv)");
+        let mut file = match std::fs::File::create(&(conf_dir.to_owned() + "/rco/objects.csv")) {
+            Ok(x) => x,
+            Err(why) => panic!("{}", why)
+        };
+        match file.write_all("nickname,path,description\nrco,~/.config/rco/config.csv,rco config\n".as_bytes()) {
+            Ok(()) => (),
+            Err(why) => panic!("{}", why)
+        }
+    }
+    if !(Path::new(&(conf_dir.to_owned() + "/rco/config.csv")).exists()) {
+        println!("No config file found, making one (~/.config/rco/config.csv)");
+        let mut file = match std::fs::File::create(&(conf_dir.to_owned() + "/rco/config.csv")) {
+            Ok(x) => x,
+            Err(why) => panic!("{}", why)
+        };
+        match file.write_all("property,value\neditor,vi\ncolor,true\n".as_bytes()) {
+            Ok(()) => (),
+            Err(why) => panic!("{}", why)
+        }
+    }
     let obj_name = conf_dir.to_owned() + "/rco/objects.csv";
     let conf_name = conf_dir.to_owned() + "/rco/config.csv";
     let obj_count = match parse_funcs::line_count(&obj_name) {

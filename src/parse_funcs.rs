@@ -1,6 +1,7 @@
 use std::fs::File;
 use std::io::BufReader;
 use std::io::prelude::*;
+use std::fs;
 use csv;
 
 pub struct Conf {
@@ -57,4 +58,9 @@ fn meta_conf_setter(i: &Vec<String>, editor: &mut String, color: &mut String) {
     if i[0] == "color".to_string() {
         *color = (*i[1]).to_string();
     }
+}
+
+pub fn make_dir(path: &str) -> std::io::Result<()> {
+    fs::create_dir(path)?;
+    Ok(())
 }
