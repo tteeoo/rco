@@ -6,9 +6,11 @@
 
 mod error_exits;
 mod parse_funcs;
+mod actions;
 extern crate dirs;
 use std::path::Path;
 use std::io::Write;
+use std::env;
 
 fn main() {
 
@@ -68,7 +70,11 @@ fn main() {
         Ok(x) => x,
     };
     let confs = parse_funcs::make_conf(&confs);
-
+    let args: Vec<_> = env::args().collect();
+    
+    if args.len() == 1 {
+        actions::list(&objs, &confs);
+    }
 
     
     // DEBUG
@@ -78,5 +84,9 @@ fn main() {
     println!("{}", obj_count);
     println!("{:?}", conf_dir);
     println!("{:?}", confs.editor);
+    for argument in &args {
+        println!("{}", argument);
+    }
+    println!("{}", args.len());
 }
 
