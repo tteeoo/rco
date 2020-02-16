@@ -1,4 +1,2 @@
-cargo build --release
-mkdir ~/.config/rco
-cp ./defaults/rco/* ~/.config/rco/
+cargo build --relase
 cp ./target/release/rco /usr/bin/
