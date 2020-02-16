@@ -74,19 +74,17 @@ fn main() {
     
     if args.len() == 1 {
         actions::list(&objs, &confs);
+    } else if args[1] == "-l" || args[1] == "--load" {
+        println!("load");
+    } else if args[1] == "-u" || args[1] == "--unload" {
+        println!("unload");
+    } else if args[1] == "-h" || args[1] == "--help" {
+        println!("help");
+    } else if args.len() == 2 {
+        println!("edit");
+    } else {
+        error_exits::arg();
     }
 
-    
-    // DEBUG
-    for i in &objs {
-        println!("{:?}", i);
-    }
-    println!("{}", obj_count);
-    println!("{:?}", conf_dir);
-    println!("{:?}", confs.editor);
-    for argument in &args {
-        println!("{}", argument);
-    }
-    println!("{}", args.len());
 }
 
