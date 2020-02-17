@@ -73,8 +73,7 @@ pub fn unload(nick: &String, obj_name: &String) {
 }
 
 pub fn help() {
-print!("Usage:
-    rco [OPTION... ] | [NICKNAME]
+print!("Usage: rco [OPTION... ] | [NICKNAME]
 
 Options:
     -l, --load: Loads objects (starts tracking a file),
