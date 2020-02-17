@@ -59,7 +59,7 @@ fn main() {
             Ok(x) => x,
             Err(why) => panic!("{}", why)
         };
-        match file.write_all("property,value\neditor,vi\ncolor,true\n".as_bytes()) {
+        match file.write_all("property,value\neditor,vi\ncolor,true\nshell,/bin/sh\n".as_bytes()) {
             Ok(()) => (),
             Err(why) => panic!("{}", why)
         }

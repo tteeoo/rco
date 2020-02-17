@@ -90,7 +90,7 @@ pub fn edit(nickname: &String, conf_struct: &parse::Conf, obj_vector: &Vec<Vec<S
     }
     let command = "".to_owned() + &conf_struct.editor + " " + path;
     println!("Edit is WIP {}", command);
-    Command::new("/usr/bin/sh")
+    Command::new(&conf_struct.shell)
         .arg("-c")
         .arg(&command)
         .spawn()
