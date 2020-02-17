@@ -4,7 +4,7 @@ prompt () {
     read -p "uninstall.sh: Also remove configuration directory and files? (y/n) " x
     if [ $x = "y" ]; then
 	echo "uninstall.sh: Removing configuration files"
-	sudo -u $SUDO_USER rm -r ~/.config/rco/
+	sudo -u $SUDO_USER rm -r $(getent passwd $SUDO_USER | cut -d: -f6)/.config/rco/
 	rmexit=$?
 	if [ $rmexit -ne 0 ]; then
 	    echo "uninstall.sh: Error removing configuration, does the directory ~/.config/rco/ even exist?"
