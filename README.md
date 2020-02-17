@@ -27,7 +27,10 @@ Note: `$ ./configure.sh` is optional
 
 Also, you <i>must</i> be in the repo's root directory when running these scripts
 
-To uninstall run 
+<br>
+
+To uninstall, run 
+
 ```
 # ./uninstall.sh
 ```
