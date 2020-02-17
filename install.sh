@@ -4,7 +4,7 @@ echo "rco-install.sh> Attempting to compile rco"
 cargo build --release
 cargexit=$?
 if [ $cargexit -ne 0 ]; then
-    echo "rco-install.sh> Error compiling, do you have cargo installed? If so, make sure you are working in the rco repository"
+    echo "rco-install.sh> Error compiling, do you have cargo installed? If so, make sure you are in the root directory of the rco repository"
     echo "If none of that helps, open an appropriate issue on GitHub"
     exit 1
 fi
