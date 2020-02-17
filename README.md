@@ -23,7 +23,9 @@ $ cd rco
 $ ./configure.sh
 # ./install.sh
 ```
-Note: ./configure.sh is optional, also, you <i>must</i> be in the repo's root directory when running these scripts
+Note: `$ ./configure.sh` is optional
+
+Also, you <i>must</i> be in the repo's root directory when running these scripts
 
 To uninstall run 
 ```
