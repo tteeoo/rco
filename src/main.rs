@@ -3,10 +3,6 @@
  * A remake of my program comma, now made in rust
  *
  * TODO:
- * + Get to minimum viable product
- *  - Edit function
- *  - Help function
- *
  * + Clean and optimize the codebase
  *  - Not too sure what this entails, but I will fix, improve, and streamline
  *      bad code (the whole thing).
@@ -17,73 +13,55 @@
  *  - Submit to AUR? -Not too sure how
 */
 
+// Use code from the other modules
 mod exits;
 mod parse;
 mod actions;
-use std::path::Path;
-use std::io::Write;
+mod files;
+
+// Use code to keep everything neat
 use std::env;
 
 fn main() {
 
-    // VARIABLE FETCH
-    let conf_dir_path = match dirs::config_dir() {
-        Some(x) => x,
-        None => panic!()
-    };
-    let conf_dir = match conf_dir_path.to_str() {
-        Some(text) => text,
-        None => panic!()
-    };
-    if !(Path::new(&(conf_dir.to_owned() + "/rco")).exists()) {
-        println!("No config directory found, making one (~/.config/rco)");
-        match parse::make_dir(&(conf_dir.to_owned() + "/rco")) {
-            Ok(()) => (),
-            Err(why) => panic!(why)
-        }
-    }
-    if !(Path::new(&(conf_dir.to_owned() + "/rco/objects.csv")).exists()) {
-        println!("No object file found, making one (~/.config/rco/objects.csv)");
-        let mut file = match std::fs::File::create(&(conf_dir.to_owned() + "/rco/objects.csv")) {
-            Ok(x) => x,
-            Err(why) => panic!("{}", why)
-        };
-        match file.write_all("nickname,path,description\nrco,~/.config/rco/config.csv,rco config\n".as_bytes()) {
-            Ok(()) => (),
-            Err(why) => panic!("{}", why)
-        }
-    }
-    if !(Path::new(&(conf_dir.to_owned() + "/rco/config.csv")).exists()) {
-        println!("No config file found, making one (~/.config/rco/config.csv)");
-        let mut file = match std::fs::File::create(&(conf_dir.to_owned() + "/rco/config.csv")) {
-            Ok(x) => x,
-            Err(why) => panic!("{}", why)
-        };
-        match file.write_all("property,value\neditor,vi\ncolor,true\nshell,/bin/sh\n".as_bytes()) {
-            Ok(()) => (),
-            Err(why) => panic!("{}", why)
-        }
-    }
+    // FILESYSTEM HANDLING
+    
+    // See verify function for what it does; returns ~/.config/
+    let conf_dir = files::verify(); 
+
+
+    // VARIABLES AND PARSING
+
+    // Make some variables for easy refernce
     let obj_name = conf_dir.to_owned() + "/rco/objects.csv";
     let conf_name = conf_dir.to_owned() + "/rco/config.csv";
+    let args: Vec<_> = env::args().collect();
     let obj_count = match parse::line_count(&obj_name) {
         Err(_why) => 0,
         Ok(x) => x - 1,
     };
+
+    // Verify objects file
     if obj_count <= 0 {
         exits::obj_file();
     }
+
+    // Creates a vector to represent every object
     let objs = match parse::get_records(&obj_name) {
         Err(why) => panic!("{}", why),
         Ok(x) => x,
     };
+
+    // Creates a struct to represent every configuration
     let confs = match parse::get_records(&conf_name) {
         Err(why) => panic!("{}", why),
         Ok(x) => x,
     };
     let confs = parse::make_conf(&confs);
-    let args: Vec<_> = env::args().collect();
+   
     
+    // MAIN FUNCTIONALITY
+
     // List
     if args.len() == 1 {
         actions::list(&objs, &confs);
@@ -98,21 +76,24 @@ fn main() {
             exits::arg();
         }
     }
+
     // Unload
     else if args[1] == "-u" || args[1] == "--unload" {
         actions::unload(&args[2], &obj_name);
     } 
-    //Help
+
+    // Help
     else if args[1] == "-h" || args[1] == "--help" {
         actions::help();
     } 
-    //Edit
+
+    // Edit
     else if args.len() == 2 {
         actions::edit(&args[1], &confs, &objs);
     }
-    // Error
+
+    // Argument error
     else {
         exits::arg();
     }
 }
-
