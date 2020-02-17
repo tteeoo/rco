@@ -4,7 +4,6 @@
  *
  * TODO:
  * + Get to minimum viable product
- *  - Unload funciton
  *  - Edit function
  *  - Help function
  *
@@ -21,7 +20,6 @@
 mod exits;
 mod parse;
 mod actions;
-extern crate dirs;
 use std::path::Path;
 use std::io::Write;
 use std::env;
@@ -86,21 +84,34 @@ fn main() {
     let confs = parse::make_conf(&confs);
     let args: Vec<_> = env::args().collect();
     
+    // List
     if args.len() == 1 {
         actions::list(&objs, &confs);
-    } else if args[1] == "-l" || args[1] == "--load" {
+    } 
+
+    // Load
+    else if args[1] == "-l" || args[1] == "--load" {
         if args.len() == 5 {
             actions::load(&args[2], &args[3], &args[4], &obj_name);
-        } else {
+        } 
+        else {
             exits::arg();
         }
-    } else if args[1] == "-u" || args[1] == "--unload" {
-        actions::unload(&args[2]);
-    } else if args[1] == "-h" || args[1] == "--help" {
+    }
+    // Unload
+    else if args[1] == "-u" || args[1] == "--unload" {
+        actions::unload(&args[2], &obj_name);
+    } 
+    //Help
+    else if args[1] == "-h" || args[1] == "--help" {
         actions::help();
-    } else if args.len() == 2 {
-        actions::edit(&confs);
-    } else {
+    } 
+    //Edit
+    else if args.len() == 2 {
+        actions::edit(&args[1], &confs, &objs);
+    }
+    // Error
+    else {
         exits::arg();
     }
 }

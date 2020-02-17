@@ -11,6 +11,11 @@ pub fn file_write(msg: std::io::Error) {
     exit(1);
 }
 
+pub fn obj() {
+    eprintln!("Error: an object with that nickname does not exist");
+    exit(0);
+}
+
 pub fn arg() {
     eprintln!("Error: Invlalid arguments, run rco --help to see usage");
     exit(1);

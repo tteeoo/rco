@@ -2,13 +2,15 @@ use crate::parse;
 use crate::exits;
 use colored::*;
 use std::fs::OpenOptions;
-use std::io::prelude::*;
+use std::fs::File;
+use std::io::{BufRead, BufReader, Write};
+use std::process::Command;
 
-pub fn list(conf_vector: &Vec<Vec<String>>, conf_struct: &parse::Conf) {
+pub fn list(obj_vector: &Vec<Vec<String>>, conf_struct: &parse::Conf) {
     println!("Nickname{:<5}Filepath{:<5}Description{:<5}", "", "", "");
     if conf_struct.color == "true" {
         let mut x = 0;
-        for i in conf_vector {
+        for i in obj_vector {
             for j in i.iter().enumerate() {
                 if x % 2 == 0 {
                     print!("{}{:>5}", j.1.on_white().black(), "".on_white().black());
@@ -21,7 +23,7 @@ pub fn list(conf_vector: &Vec<Vec<String>>, conf_struct: &parse::Conf) {
             x += 1;
         }
     } else {
-        for i in conf_vector {
+        for i in obj_vector {
             for j in i {
                 print!("{}{:->5}", j, "");
             }
@@ -42,12 +44,31 @@ pub fn load(nick: &String, path: &String, desc: &String, obj_name: &String) {
         exits::file_write(e);
     }
 
-    println!("{}", obj_in);
     exits::success();
 }
 
-pub fn unload(nick: &String) {
-    println!("{}", nick);
+pub fn unload(nick: &String, obj_name: &String) {
+
+    let file = File::open(obj_name).unwrap();
+    let mut new_file: String = "".to_string();
+    let reader = BufReader::new(file);
+
+    for line in reader.lines() {
+        let line = line.unwrap();
+        if line.len() >= nick.len() + 1 && line[..(nick.len() + 1)].to_owned() == nick.to_owned() + "," {
+        } else {
+            new_file += &(line + "\n");
+        }
+    }
+    let mut file = match std::fs::File::create(obj_name) {
+        Ok(x) => x,
+        Err(why) => panic!("{}", why)
+    };
+    match file.write_all(new_file.as_bytes()) {
+        Ok(()) => (),
+        Err(why) => panic!("{}", why)
+    }
+
     exits::success();
 }
 
@@ -56,7 +77,19 @@ pub fn help() {
     exits::success();
 }
 
-pub fn edit(conf_struct: &parse::Conf) {
+pub fn edit(nickname: &String, conf_struct: &parse::Conf, obj_vector: &Vec<Vec<String>>) {
+    let mut path: &String = &"".to_string();
+
+    for i in obj_vector {
+        if &i[0] == nickname {
+           path = &i[1];
+        }
+    }
+    if path == &"".to_string() {
+        exits::obj();
+    }
+    let command = "".to_owned() + &conf_struct.editor + " " + path;
+    println!("Edit is WIP {}", command);
 
     exits::success();
 }
