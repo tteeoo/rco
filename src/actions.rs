@@ -1,28 +1,40 @@
+// Use code from other modules
 use crate::parse;
 use crate::exits;
+
+// Use code to keep things neat
 use colored::*;
-use std::fs::OpenOptions;
-use std::fs::File;
+use std::fs::{OpenOptions, File};
 use std::io::{BufRead, BufReader, Write};
 use std::process::Command;
 
+// List function lists out every object
 pub fn list(obj_vector: &Vec<Vec<String>>, conf_struct: &parse::Conf) {
+
+    // Prints header
     println!("Nickname{:<5}Filepath{:<5}Description{:<5}", "", "", "");
+
+    // Printing if color is enabled
     if conf_struct.color == "true" {
         let mut x = 0;
         for i in obj_vector {
             for j in i.iter().enumerate() {
+
+                // Alternates printing black on white and white on black
                 if x % 2 == 0 {
                     print!("{}{:>5}", j.1.on_white().black(), "".on_white().black());
-                } else {
-
+                }
+                else {
                     print!("{}{:>5}", j.1.on_black().white(), "".on_black().white());
                 }
             }
             println!("");
             x += 1;
         }
-    } else {
+    }
+
+    // Printing if color is not enabled
+    else {
         for i in obj_vector {
             for j in i {
                 print!("{}{:->5}", j, "");
@@ -32,14 +44,20 @@ pub fn list(obj_vector: &Vec<Vec<String>>, conf_struct: &parse::Conf) {
     }
 }
 
+// Load function appends object to objects.csv
 pub fn load(nick: &String, path: &String, desc: &String, obj_name: &String) {
+
+    // Formats arguments into a string that actually represents an object
     let obj_in = format!("{},{},{}", nick, path, desc);
+
+    // Creates a file object that opens for appending
     let mut file = OpenOptions::new()
         .write(true)
         .append(true)
         .open(obj_name)
         .unwrap();
 
+    // Writes object to file
     if let Err(e) = writeln!(file, "{}", obj_in) {
         exits::file_write(e);
     }
@@ -47,23 +65,36 @@ pub fn load(nick: &String, path: &String, desc: &String, obj_name: &String) {
     exits::success();
 }
 
+// Unload function removes specific object from objects.csv
 pub fn unload(nick: &String, obj_name: &String) {
 
+    // Makes a file object for the object file
     let file = File::open(obj_name).unwrap();
+
+    // Makes a variable for the text to be written to the file
     let mut new_file: String = "".to_string();
+
+    // Creates a reader object to read the file
     let reader = BufReader::new(file);
 
+    // Reads the file line by line
     for line in reader.lines() {
         let line = line.unwrap();
-        if line.len() >= nick.len() + 1 && line[..(nick.len() + 1)].to_owned() == nick.to_owned() + "," {
-        } else {
+
+        // If the line does not start with the nickname + , it appends it to the new file string
+        if ! line.len() >= nick.len() + 1 && line[..(nick.len() + 1)].to_owned() == nick.to_owned() + "," {
             new_file += &(line + "\n");
         }
     }
+
+    // Makes a file object for writing to the object file
     let mut file = match std::fs::File::create(obj_name) {
         Ok(x) => x,
         Err(why) => panic!("{}", why)
     };
+
+    // Writes the new string to the file, overwriting everything 
+    // Only losing the specified object
     match file.write_all(new_file.as_bytes()) {
         Ok(()) => (),
         Err(why) => panic!("{}", why)
@@ -72,8 +103,9 @@ pub fn unload(nick: &String, obj_name: &String) {
     exits::success();
 }
 
+// Help function prints help message
 pub fn help() {
-print!("Usage: rco [OPTION... ] | [NICKNAME]
+    print!("Usage: rco [OPTION... ] | [NICKNAME]
 
 Options:
     -l, --load: Loads objects (starts tracking a file),
@@ -103,19 +135,29 @@ Copyright (c) 2020 Theo Henson, MIT License
     exits::success();
 }
 
+// Edit function opens up a file in the chosen editor
 pub fn edit(nickname: &String, conf_struct: &parse::Conf, obj_vector: &Vec<Vec<String>>) {
+
+    // Initializes the path variable which represents the path of the file to edit
     let mut path: &String = &"".to_string();
 
+    // Searches the objects for the one with the specified nickname
+    // Grabs that objects path
     for i in obj_vector {
         if &i[0] == nickname {
            path = &i[1];
         }
     }
+
+    // If the path is still "" it errors out
     if path == &"".to_string() {
         exits::obj();
     }
+
+    // Makes a variable for the command to be ran
     let command = "".to_owned() + &conf_struct.editor + " " + path;
-    println!("Edit is WIP {}", command);
+
+    // Runs your editor on the path, through a shell
     Command::new(&conf_struct.shell)
         .arg("-c")
         .arg(&command)
