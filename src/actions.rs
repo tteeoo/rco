@@ -88,9 +88,9 @@ pub fn edit(nickname: &String, conf_struct: &parse::Conf, obj_vector: &Vec<Vec<S
     if path == &"".to_string() {
         exits::obj();
     }
-    let command = "".to_owned() + &conf_struct.editor + " " + path;
+    let command = "\"".to_owned() + &conf_struct.editor + " " + path + "\"";
     println!("Edit is WIP {}", command);
-    std::process::Command::new("/usr/bin/sh")
+    Command::new("/usr/bin/sh")
         .arg("-c")
         .arg(&command)
         .spawn()
