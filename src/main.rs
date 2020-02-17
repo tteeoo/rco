@@ -19,9 +19,7 @@ mod parse;
 mod actions;
 mod files;
 
-// Use code to keep everything neat
-use std::env;
-
+// Main funtion of entire program
 fn main() {
 
     // FILESYSTEM HANDLING
@@ -35,7 +33,7 @@ fn main() {
     // Make some variables for easy refernce
     let obj_name = conf_dir.to_owned() + "/rco/objects.csv";
     let conf_name = conf_dir.to_owned() + "/rco/config.csv";
-    let args: Vec<_> = env::args().collect();
+    let args: Vec<_> = std::env::args().collect();
     let obj_count = match parse::line_count(&obj_name) {
         Err(_why) => 0,
         Ok(x) => x - 1,
