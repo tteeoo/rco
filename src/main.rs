@@ -2,10 +2,24 @@
  *
  * A remake of my program comma, now made in rust
  *
+ * TODO:
+ * + Get to minimum viable product
+ *  - Unload funciton
+ *  - Edit function
+ *  - Help function
+ *
+ * + Clean and optimize the codebase
+ *  - Not too sure what this entails, but I will fix, improve, and streamline
+ *      bad code (the whole thing).
+ *
+ * + (Maybe) get in the AUR
+ *  - Learn how PKGBUILD works
+ *  - Make one
+ *  - Submit to AUR? -Not too sure how
 */
 
-mod error_exits;
-mod parse_funcs;
+mod exits;
+mod parse;
 mod actions;
 extern crate dirs;
 use std::path::Path;
@@ -25,7 +39,7 @@ fn main() {
     };
     if !(Path::new(&(conf_dir.to_owned() + "/rco")).exists()) {
         println!("No config directory found, making one (~/.config/rco)");
-        match parse_funcs::make_dir(&(conf_dir.to_owned() + "/rco")) {
+        match parse::make_dir(&(conf_dir.to_owned() + "/rco")) {
             Ok(()) => (),
             Err(why) => panic!(why)
         }
@@ -54,37 +68,40 @@ fn main() {
     }
     let obj_name = conf_dir.to_owned() + "/rco/objects.csv";
     let conf_name = conf_dir.to_owned() + "/rco/config.csv";
-    let obj_count = match parse_funcs::line_count(&obj_name) {
+    let obj_count = match parse::line_count(&obj_name) {
         Err(_why) => 0,
         Ok(x) => x - 1,
     };
     if obj_count <= 0 {
-        error_exits::obj_file();
+        exits::obj_file();
     }
-    let objs = match parse_funcs::get_records(&obj_name) {
+    let objs = match parse::get_records(&obj_name) {
         Err(why) => panic!("{}", why),
         Ok(x) => x,
     };
-    let confs = match parse_funcs::get_records(&conf_name) {
+    let confs = match parse::get_records(&conf_name) {
         Err(why) => panic!("{}", why),
         Ok(x) => x,
     };
-    let confs = parse_funcs::make_conf(&confs);
+    let confs = parse::make_conf(&confs);
     let args: Vec<_> = env::args().collect();
     
     if args.len() == 1 {
         actions::list(&objs, &confs);
     } else if args[1] == "-l" || args[1] == "--load" {
-        println!("load");
+        if args.len() == 5 {
+            actions::load(&args[2], &args[3], &args[4], &obj_name);
+        } else {
+            exits::arg();
+        }
     } else if args[1] == "-u" || args[1] == "--unload" {
-        println!("unload");
+        actions::unload(&args[2]);
     } else if args[1] == "-h" || args[1] == "--help" {
-        println!("help");
+        actions::help();
     } else if args.len() == 2 {
-        println!("edit");
+        actions::edit(&confs);
     } else {
-        error_exits::arg();
+        exits::arg();
     }
-
 }
 

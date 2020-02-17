@@ -6,7 +6,16 @@ pub fn obj_file() {
     exit(1);
 }
 
+pub fn file_write(msg: std::io::Error) {
+    eprintln!("Error: Error while writing to file: {}", msg);
+    exit(1);
+}
+
 pub fn arg() {
     eprintln!("Error: Invlalid arguments, run rco --help to see usage");
     exit(1);
+}
+
+pub fn success() {
+    exit(0);
 }
