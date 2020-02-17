@@ -73,7 +73,34 @@ pub fn unload(nick: &String, obj_name: &String) {
 }
 
 pub fn help() {
-    print!("\n");
+print!("Usage:
+    rco [OPTION... ] | [NICKNAME]
+
+Options:
+    -l, --load: Loads objects (starts tracking a file),
+        takes arguments of the nickname, filepath, and description,
+        e.g., `rco -l nickname /path/to/file \"description\"`
+        Note the quotes which are necessary when writing multi-word descriptions.
+
+    -u, --unload: Unloads objects,
+        only takes the argument of the file's nickname,
+        e.g., `rco -u nickname`
+        Note that if objects share a nickname, all will be unloaded.
+
+    -h, --help: Display a help (this) message,
+        explaining how to use rco, takes no arguments.
+
+    
+Edit: Edit the file with corresponding nickname,
+    the nickname being the only argument,
+    e.g., `rco nickame`
+
+List: Lists all tracked files, ran when provided no arguments,
+    e.g., `rco`
+
+Repository hosted on GitHub: https://github.com/tteeoo/rco
+Copyright (c) 2020 Theo Henson, MIT License
+");
     exits::success();
 }
 
