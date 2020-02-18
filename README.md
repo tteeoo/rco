@@ -14,7 +14,7 @@ This is a (better) remake of my project <a href="https://github.com/tteeoo/rco">
 
 ## AUR
 
-rco can be installed via the AUR package <a href="https://aur.archlinux.org/packages/rco/">rco</a>
+If you are on Arch Linux, rco can be installed via the AUR package <a href="https://aur.archlinux.org/packages/rco/">rco</a>
 
 ## Build from source with cargo
 
@@ -22,7 +22,7 @@ rco can be installed via the AUR package <a href="https://aur.archlinux.org/pack
 
 * <b>cargo</b>, rust's package manager and frontend to the compiler
 
-### Cargo command
+### To install:
 
 ```
 $ cargo install --git https://github.com/tteeoo/rco
