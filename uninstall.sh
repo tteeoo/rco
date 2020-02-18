@@ -4,22 +4,22 @@ prompt () {
     read -p "uninstall.sh: Also remove configuration directory and files? (y/n) " x
     if [ $x = "y" ]; then
 	echo "uninstall.sh: Removing configuration files"
-	sudo -u $SUDO_USER rm -r $(getent passwd $SUDO_USER | cut -d: -f6)/.config/rco/
+	rm -r $HOME/.config/rco/
 	rmexit=$?
 	if [ $rmexit -ne 0 ]; then
 	    echo "uninstall.sh: Error removing configuration, does the directory ~/.config/rco/ even exist?"
 	    exit 1
 	fi
 	echo "uninstall.sh: Removing binary executable"
-	rm /usr/bin/rco
+	rm $HOME/.cargo/bin/rco
 	biexit=$?
 	if [ $biexit -ne 0 ]; then
-	    echo "uninstall.sh: Error removing executable, does the file /usr/bin/rco even exist?"
+	    echo "uninstall.sh: Error removing executable, does the file ~/.cargo/bin/rco even exist?"
 	    exit 1
 	fi
     elif [ $x = "n" ]; then
 	echo "uninstall.sh: Removing binary executable"
-	rm /usr/bin/rco
+	rm $HOME/.cargo/bin/rco
 	biexit=$?
 	if [ $biexit -ne 0 ]; then
 	    echo "uninstall.sh: Error removing executable, does the file /usr/bin/rco even exist?"
