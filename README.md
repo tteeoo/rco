@@ -22,12 +22,10 @@ As of now, rco only runs on Linux, and has been tested (working) on Arch and Ubu
 ```
 $ git clone https://github.com/tteeoo/rco
 $ cd rco
-$ ./configure.sh
 # ./install.sh
 ```
-Note: `$ ./configure.sh` is optional
 
-Also, you <i>must</i> be in the repo's root directory when running these scripts
+Note: you <i>must</i> be in the repo's root directory when running these scripts
 
 <br>
 
