@@ -1,5 +1,7 @@
 /* Copyright (c) 2020 Theo Henson, MIT License
  *
+ * rco: rusty configurer
+ *
  * A remake of my program comma, now made in rust
  *
 */
