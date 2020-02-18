@@ -6,7 +6,7 @@ I mainly made this to learn rust, although it is genuinely useful, atleast to me
 
 This is a (better) remake of my project <a href="https://github.com/tteeoo/rco">comma</a> which is writen in C.
 
-As of now it is only supported on Linux, and has been tested (working) on Arch and Ubuntu. It might work on macOS, I'm not sure; it definetly won't work on Windows though.
+As of now, rco only runs on Linux, and has been tested (working) on Arch and Ubuntu. It might work on macOS, I'm not sure; it definetly won't work on Windows though.
 
 # Installation
 
