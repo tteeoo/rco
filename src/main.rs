@@ -72,7 +72,7 @@ fn main() {
     else if args[1] == "-u" || args[1] == "--unload" {
 
         // Verify all arguments are provided
-        if args.len() = 3 {
+        if args.len() == 3 {
             actions::unload(&args[2], &obj_name);
         }
         else {
