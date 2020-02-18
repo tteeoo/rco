@@ -1,5 +1,4 @@
 // Use code to keep everything neat
-use std::io::{prelude::*, BufReader};
 use std::fs;
 use csv;
 

@@ -1,16 +1,6 @@
 // Use code to keep everything neat
 use std::process::exit;
 
-// Error when there is a problem with your objects file
-pub fn obj_file() {
-
-    // Prints to stderr
-    eprintln!("Error: Object file non-existent, couldn't be read, invalid, or empty (~/.config/rco/objects.csv)");
-
-    // Exits with exit code 1 (error)
-    exit(1);
-}
-
 // Error when there is a problem writing to a file
 pub fn file_write(msg: std::io::Error) {
     eprintln!("Error: Error while writing to file: {}", msg);

@@ -4,7 +4,6 @@ use crate::parse;
 // Use code to keep everything neat
 use std::path::Path;
 use std::io::Write;
-use std::fs::OpenOptions;
 
 pub fn verify() -> String {
 
