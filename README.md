@@ -6,6 +6,8 @@ I mainly made this to learn rust, although it is genuinely useful, atleast to me
 
 This is a (better) remake of my project <a href="https://github.com/tteeoo/rco">comma</a> which is writen in C.
 
+As of now it is only supported on Linux, and has been tested (working) on Arch and Ubuntu. It might work on macOS, I'm not sure; it definetly won't work on Windows though.
+
 # Installation
 
 ## Build from source (only current installation method)
@@ -70,7 +72,7 @@ This is where you can change:
 
 - Wether or not files are list in alternating colors
 
-- The shell your editor is opened with; This will not need to be changed unless you do not have `sh` at `/bin/sh` for some reason
+- The shell your editor is opened with; this will not need to be changed unless you do not have `sh` at `/bin/sh` for some reason
 
 
 # License
