@@ -28,7 +28,7 @@ rco can be installed via the AUR package <a href="https://aur.archlinux.org/pack
 $ cargo install --git https://github.com/tteeoo/rco
 ```
 
-You may need to add `~/.cargo/bin/` to your `PATH` variable
+You may need to add `~/.cargo/bin/` to your `PATH` variable in your shell's rc file; this is so you can run it in your shell without specifying the binary's filepath.
 
 
 # Usage
