@@ -74,6 +74,15 @@ This is where you can change:
 - The shell your editor is opened with; this will not need to be changed unless you do not have `sh` at `/bin/sh` for some reason
 
 
+# Roadmap
+
+## Future features include:
+
+* Custom object file location
+* Exporting files to a central directory
+* Importing files from a git repository, and copying them into your system
+
+
 # License
 
 All files are licensced under the MIT License
