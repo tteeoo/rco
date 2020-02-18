@@ -14,52 +14,45 @@ As of now, rco only runs on Linux, and has been tested (working) on Arch and Ubu
 
 rco can be installed via the AUR package <a href="https://aur.archlinux.org/packages/rco/">rco</a>
 
-## Build from source
+## Build from source with cargo
 
 ### Prerequisites
 
 * <b>cargo</b>, rust's package manager and frontend to the compiler
-* <b>rustc</b>, the actual rust compiler, which you most likely already have if you have cargo
 
 ### Commands
 
 ```
-$ git clone https://github.com/tteeoo/rco
-$ cd rco
-# ./install.sh
+$ cargo install --git https://github.com/tteeoo/rco
 ```
 
-Note: you <i>must</i> be in the repo's root directory when running these scripts
+You may need to add `~/.cargo/bin/` to your `PATH` variable
 
-<br>
-
-To uninstall, run 
-
-```
-# ./uninstall.sh
-```
 
 # Usage
 
-rco is a basic program and has four main functions:
-
-*Listing* - rco will list out all tracked files when it has no arguments
-
-`rco`
-
-*Loading* - rco will start tracking a given file, giving it a description and a nickname to easily edit it with
-
-`rco -l nickname /path/to/file "brief description"`
-
-
-*Editing* - rco will attempt to open the file with the given nickname in your editor of choice, specified in its config.csv file
+rco is a tool that allows you to give your configuration files a nickname, then quickly edit them by running:
 
 `rco nickname`
 
 
-*Unloading* - rco will stop tracking a file with a specified nickname
+
+You can load configuration files like this:
+
+`rco -l nickname /path/to/file "brief description"`
+
+
+
+In turn, you can unload like this:
 
 `rco -u nickname`
+
+
+
+You can also list all your tracked configuration files by running without cany arguments:
+
+`rco`
+
 
 
 # Configuration
