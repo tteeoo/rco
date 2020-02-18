@@ -77,14 +77,27 @@ pub fn unload(nick: &String, obj_name: &String) {
     // Creates a reader object to read the file
     let reader = BufReader::new(file);
 
+    // Initialize diff variable to check if nickname actually exists
+    let mut diff = 0;
+
     // Reads the file line by line
-    for line in reader.lines() {
-        let line = line.unwrap();
+    for line in reader.lines().enumerate() {
+        let line = (line.0, line.1.unwrap());
 
         // If the line does not start with the nickname + , it appends it to the new file string
-        if !(line.len() >= nick.len() + 1 && line[..(nick.len() + 1)].to_owned() == nick.to_owned() + ",") {
-            new_file += &(line + "\n");
+        if !((line.1.len() >= nick.len() + 1) && ((line.1[..(nick.len() + 1)].to_owned()) == (nick.to_owned() + ","))) || line.0 == 0 {
+            new_file += &(line.1 + "\n");
         }
+        else {
+            diff += 1;
+        }
+
+    }
+
+    // Checks if there was actually an object with that nickname
+    // If not, it errors out
+    if diff == 0 {
+        exits::obj();
     }
 
     // Makes a file object for writing to the object file
