@@ -116,7 +116,6 @@ Options:
     -u, --unload: Unloads objects,
         only takes the argument of the file's nickname,
         e.g., `rco -u nickname`
-        Note that if objects share a nickname, all will be unloaded.
 
     -h, --help: Display a help (this) message,
         explaining how to use rco, takes no arguments.
