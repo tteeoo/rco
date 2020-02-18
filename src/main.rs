@@ -25,15 +25,6 @@ fn main() {
     let obj_name = conf_dir.to_owned() + "/rco/objects.csv";
     let conf_name = conf_dir.to_owned() + "/rco/config.csv";
     let args: Vec<_> = std::env::args().collect();
-    let obj_count = match parse::line_count(&obj_name) {
-        Err(_why) => 0,
-        Ok(x) => x - 1,
-    };
-
-    // Verify objects file
-    if obj_count <= 0 {
-        exits::obj_file();
-    }
 
     // Creates a vector to represent every object
     let objs = match parse::get_records(&obj_name) {

@@ -41,24 +41,6 @@ pub fn get_records(filename: &str) -> std::io::Result<Vec<Vec<String>>> {
     Ok(objs)
 }
 
-// Function for getting the line count of a file
-// Used to partially validate objects file
-pub fn line_count(filename: &str) -> std::io::Result<usize> {
-
-    // Initializes count variable
-    let mut count: usize = 0;
-
-    // Makes file object and a reader for it
-    let file = fs::File::open(filename)?;
-    let reader = BufReader::new(file);
-
-    // Iterates each line of the file and adds to count
-    for _line in reader.lines() {
-        count += 1;
-    }
-    Ok(count)
-}
-
 // Function to make a Conf struct out of a vector
 pub fn make_conf(conf_vector: &Vec<Vec<String>>) -> Conf {
 
