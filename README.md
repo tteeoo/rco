@@ -1,8 +1,8 @@
-# rco
+# rco: rusty configurer
 
-WIP. A niche tool for managing configuration files, specifically geared towards minimal linux installations.
+A niche tool for managing configuration files, specifically geared towards minimal linux installations.
 
-I mainly am making this to learn rust, although it is genuinely useful, atleast to me.
+I mainly made this to learn rust, although it is genuinely useful, atleast to me.
 
 This is a (better) remake of my project <a href="https://github.com/tteeoo/rco">comma</a> which is writen in C.
 
@@ -37,7 +37,7 @@ To uninstall, run
 
 # Usage
 
-rco is a very basic program and has four main functions:
+rco is a basic program and has four main functions:
 
 *Listing* - rco will list out all tracked files when it has no arguments
 
@@ -70,9 +70,7 @@ This is where you can change:
 
 - Wether or not files are list in alternating colors
 
-- The shell your editor is opened with;
-
-  This will not need to be changed unless you do not have `sh` at `/bin/sh` for some reason
+- The shell your editor is opened with; This will not need to be changed unless you do not have `sh` at `/bin/sh` for some reason
 
 
 # License
