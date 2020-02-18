@@ -4,6 +4,7 @@ use crate::parse;
 // Use code to keep everything neat
 use std::path::Path;
 use std::io::Write;
+use std::fs::File;
 
 pub fn verify() -> String {
 
@@ -31,7 +32,7 @@ pub fn verify() -> String {
     // Check if ~/.config/rco/objects.csv exists and make it if it doesn't
     if !(Path::new(&(conf_dir.to_owned() + "/rco/objects.csv")).exists()) {
         println!("No object file found, making one (~/.config/rco/objects.csv)");
-        let mut file = match std::fs::File::create(&(conf_dir.to_owned() + "/rco/objects.csv")) {
+        let mut file = match File::create(&(conf_dir.to_owned() + "/rco/objects.csv")) {
             Ok(x) => x,
             Err(why) => panic!("{}", why)
         };
@@ -44,7 +45,7 @@ pub fn verify() -> String {
     // Check if ~/.config/rco/config.csv exists and make it if it doesn't
     if !(Path::new(&(conf_dir.to_owned() + "/rco/config.csv")).exists()) {
         println!("No config file found, making one (~/.config/rco/config.csv)");
-        let mut file = match std::fs::File::create(&(conf_dir.to_owned() + "/rco/config.csv")) {
+        let mut file = match File::create(&(conf_dir.to_owned() + "/rco/config.csv")) {
             Ok(x) => x,
             Err(why) => panic!("{}", why)
         };

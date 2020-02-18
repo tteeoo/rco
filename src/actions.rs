@@ -101,7 +101,7 @@ pub fn unload(nick: &String, obj_name: &String) {
     }
 
     // Makes a file object for writing to the object file
-    let mut file = match std::fs::File::create(obj_name) {
+    let mut file = match File::create(obj_name) {
         Ok(x) => x,
         Err(why) => panic!("{}", why)
     };
