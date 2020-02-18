@@ -1,7 +1,7 @@
 # rco: rusty configurer
 
 A niche tool for managing configuration files, specifically geared towards minimal linux installations.
-It lets you to give your configuration files a nickname, then quickly edit them by running:
+It lets you give your configuration files a nickname, then quickly edit them by running:
 
 `rco nickname`
 
