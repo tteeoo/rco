@@ -15,7 +15,7 @@ pub fn obj() {
 
 // Error when there are invalid arguments
 pub fn arg() {
-    eprintln!("Error: Invlalid arguments, run rco --help to see usage");
+    eprintln!("Error: Invalid arguments, run rco --help to see usage");
     exit(1);
 }
 
