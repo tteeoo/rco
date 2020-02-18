@@ -58,6 +58,8 @@ fn main() {
                 }
             }
         }
+
+        // Verify all arguments are provided
         if args.len() == 5 {
             actions::load(&args[2], &args[3], &args[4], &obj_name);
         } 
@@ -68,7 +70,14 @@ fn main() {
 
     // Unload
     else if args[1] == "-u" || args[1] == "--unload" {
-        actions::unload(&args[2], &obj_name);
+
+        // Verify all arguments are provided
+        if args.len() = 3 {
+            actions::unload(&args[2], &obj_name);
+        }
+        else {
+            exits::arg();
+        }
     } 
 
     // Help
