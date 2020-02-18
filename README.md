@@ -10,7 +10,11 @@ As of now, rco only runs on Linux, and has been tested (working) on Arch and Ubu
 
 # Installation
 
-## Build from source (only current installation method)
+## AUR
+
+rco can be installed via the AUR package <a href="https://aur.archlinux.org/packages/rco/">rco</a>
+
+## Build from source
 
 ### Prerequisites
 
