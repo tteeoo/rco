@@ -29,6 +29,12 @@ pub fn arg() {
     exit(1);
 }
 
+// Error when a nickname already exists
+pub fn nick() {
+    eprintln!("Error: That nickname already exists");
+    exit(1);
+}
+
 // Ran when code executed successfully
 pub fn success() {
     

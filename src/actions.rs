@@ -82,7 +82,7 @@ pub fn unload(nick: &String, obj_name: &String) {
         let line = line.unwrap();
 
         // If the line does not start with the nickname + , it appends it to the new file string
-        if ! line.len() >= nick.len() + 1 && line[..(nick.len() + 1)].to_owned() == nick.to_owned() + "," {
+        if !(line.len() >= nick.len() + 1 && line[..(nick.len() + 1)].to_owned() == nick.to_owned() + ",") {
             new_file += &(line + "\n");
         }
     }

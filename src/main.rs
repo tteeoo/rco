@@ -2,15 +2,6 @@
  *
  * A remake of my program comma, now made in rust
  *
- * TODO:
- * + Clean and optimize the codebase
- *  - Not too sure what this entails, but I will fix, improve, and streamline
- *      bad code (the whole thing).
- *
- * + (Maybe) get in the AUR
- *  - Learn how PKGBUILD works
- *  - Make one
- *  - Submit to AUR? -Not too sure how
 */
 
 // Use code from the other modules
@@ -67,6 +58,15 @@ fn main() {
 
     // Load
     else if args[1] == "-l" || args[1] == "--load" {
+
+        // Make sure nickname isn't duplicate
+        for i in objs {
+            for j in i {
+                if args[2] == j {
+                    exits::nick();
+                }
+            }
+        }
         if args.len() == 5 {
             actions::load(&args[2], &args[3], &args[4], &obj_name);
         } 
