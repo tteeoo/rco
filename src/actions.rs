@@ -183,6 +183,6 @@ pub fn edit(nickname: &String, conf_struct: &parse::Conf, obj_vector: &Vec<Vec<S
 
 // Function to print the current running version
 pub fn version() {
-    println!("Running rco-0.1.3");
+    println!("Running rco-0.1.4");
     exits::success();
 }
