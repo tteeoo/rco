@@ -82,6 +82,8 @@ This is where you can change:
 * Exporting files to a central directory
 * Importing files from a git repository, and copying them into your system
 
+See the projects tab at the top for a more verbose view of what is being worked on.
+
 
 # License
 
