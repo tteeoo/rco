@@ -90,20 +90,20 @@ The default file can be located in the repo at "defaults/config.csv"
 
 				    Directories
 
-			    - src/: all of the source code.
+			    - src/: all of the source code
 
 			    - defaults/: where the default config and object files are, as well as the license, and a non-markdown README
 
-			    - scripts/: various useful scripts.
+			    - scripts/: various useful scripts
 			    
 			    - pkg/: package files for different distros
 
 
 				    Branches
 
-			    - master: the latest stable release.
+			    - master: the latest stable release
 
-			    - testing: for development use only. master will be merged with this once a release is ready.
+			    - testing: for development use only. master will be merged with this once a release is ready
 
 
 					    LICENSE
