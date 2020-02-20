@@ -90,7 +90,8 @@ See the projects tab at the top for a more verbose view of what is being worked 
 ## Directories
 
 * **src/**: all of the source code.
-* **defaults/**: where the default config and object files are.
+* **defaults/**: where the default config and object files are, as well as the license.
+* **scripts/**: various useful scripts.
 
 ## Branches
 
@@ -102,4 +103,4 @@ See the projects tab at the top for a more verbose view of what is being worked 
 
 All files are licensced under the MIT License
 
-This can be found in the repo at /LICENSE
+This can be found in the repo at defaults/MIT-LICENSE
