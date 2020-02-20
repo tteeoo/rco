@@ -103,4 +103,4 @@ See the projects tab at the top for a more verbose view of what is being worked 
 
 All files are licensced under the MIT License
 
-This can be found in the repo at defaults/MIT-LICENSE
+This can be found in the repo at defaults/MIT-LICENSE.txt
