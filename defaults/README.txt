@@ -95,6 +95,8 @@ The default file can be located in the repo at "defaults/config.csv"
 			    - defaults/: where the default config and object files are, as well as the license, and a non-markdown README
 
 			    - scripts/: various useful scripts.
+			    
+			    - pkg/: package files for different distros
 
 
 				    Branches
