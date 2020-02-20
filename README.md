@@ -31,7 +31,7 @@ $ cargo install --git https://github.com/tteeoo/rco
 You may need to add `~/.cargo/bin/` to your `PATH` variable in your shell's rc file; this is so you can run `rco` in your shell without specifying the binary's filepath.
 
 
-To uninstall rco when installed by building from source (not via AUR) run the uninstall.sh script
+To uninstall rco when installed by building from source (not via AUR) run the `scripts/uninstall.sh` script
 
 # Usage
 
@@ -63,7 +63,7 @@ You can also list all your tracked configuration files by running without cany a
 
 rco's configuration file is located at `~/.config/rco/config.csv`
 
-The default file can be located in the repo at `/defaults/config.csv`
+The default file can be located in the repo at `defaults/config.csv`
 
 This is where you can change:
 
@@ -103,4 +103,4 @@ See the projects tab at the top for a more verbose view of what is being worked 
 
 All files are licensced under the MIT License
 
-This can be found in the repo at defaults/MIT-LICENSE.txt
+This can be found in the repo at `defaults/MIT-LICENSE.txt`
