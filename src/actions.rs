@@ -133,7 +133,8 @@ Options:
     -h, --help: Display a help (this) message,
         explaining how to use rco, takes no arguments.
 
-    
+    -V, --version: Display the current version of rco.
+
 Edit: Edit the file with corresponding nickname,
     the nickname being the only argument,
     e.g., `rco nickame`
@@ -142,7 +143,7 @@ List: Lists all tracked files, ran when provided no arguments,
     e.g., `rco`
 
 Repository hosted on GitHub: https://github.com/tteeoo/rco
-Copyright (c) 2020 Theo Henson, MIT License
+Copyright (c) 2020 Theo Henson <theodorehenson@protonmail.com>, MIT License
 ");
     exits::success();
 }
@@ -177,5 +178,11 @@ pub fn edit(nickname: &String, conf_struct: &parse::Conf, obj_vector: &Vec<Vec<S
         .expect("Error: Failed to run editor")
         .wait()
         .expect("Error: Editor returned a non-zero status");
+    exits::success();
+}
+
+// Function to print the current running version
+pub fn version() {
+    println!("Running rco-0.1.4");
     exits::success();
 }

@@ -87,6 +87,11 @@ fn main() {
         actions::help();
     } 
 
+    // Version
+    else if args[1] == "-V" || args[1] == "--version" {
+        actions::version();
+    }
+
     // Edit
     else if args.len() == 2 {
         actions::edit(&args[1], &confs, &objs);
