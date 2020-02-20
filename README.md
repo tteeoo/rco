@@ -16,6 +16,9 @@ This is a (better) remake of my project <a href="https://github.com/tteeoo/rco">
 
 If you are on Arch Linux, rco can be installed via the AUR package <a href="https://aur.archlinux.org/packages/rco/">rco</a>
 
+Also, the PKGBUILD for this project is located at `pkg/arch/PKGBUILD`
+
+
 ## Build from source with cargo
 
 ### Prerequisites
