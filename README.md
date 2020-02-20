@@ -85,6 +85,19 @@ This is where you can change:
 See the projects tab at the top for a more verbose view of what is being worked on.
 
 
+# Project layout
+
+## Directories
+
+* **src/**: all of the source code.
+* **defaults/**: where the default config and object files are.
+
+## Branches
+
+* **master**: the latest stable release.
+* **testing**: for development use only. master will be merged with this once a release is ready.
+
+
 # License
 
 All files are licensced under the MIT License
