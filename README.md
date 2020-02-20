@@ -31,7 +31,7 @@ $ cargo install --git https://github.com/tteeoo/rco
 You may need to add `~/.cargo/bin/` to your `PATH` variable in your shell's rc file; this is so you can run `rco` in your shell without specifying the binary's filepath.
 
 
-To uninstall rco when installed by building from source (not via AUR) run the `scripts/uninstall.sh` script
+To uninstall rco when installed by building from source (not via AUR) run the `scripts/uninstall.sh` script.
 
 # Usage
 
@@ -89,14 +89,15 @@ See the projects tab at the top for a more verbose view of what is being worked 
 
 ## Directories
 
-* **src/**: all of the source code.
-* **defaults/**: where the default config and object files are, as well as the license.
-* **scripts/**: various useful scripts.
+* **src/**: all of the source code
+* **defaults/**: where the default config and object files are, as well as the license, as well as a non-markdown README
+* **scripts/**: various useful scripts
+* **pkg/**: package files for different distros
 
 ## Branches
 
-* **master**: the latest stable release.
-* **testing**: for development use only. master will be merged with this once a release is ready.
+* **master**: the latest stable release
+* **testing**: for development use only. master will be merged with this once a release is ready
 
 
 # License
