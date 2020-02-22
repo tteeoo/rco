@@ -16,7 +16,7 @@ This is a (better) remake of my project <a href="https://github.com/tteeoo/rco">
 
 If you are on Arch Linux, rco can be installed via the AUR package <a href="https://aur.archlinux.org/packages/rco/">rco</a>
 
-Also, the PKGBUILD for this project is located at <a href="https://github.com/tteeoo/rco/pkg/arch/PKGBUILD">pkg/arch/PKGBUILD</a>
+Also, the PKGBUILD for this project is located at <a href="https://github.com/tteeoo/rco/blob/master/pkg/arch/PKGBUILD">pkg/arch/PKGBUILD</a>
 
 
 ## Build from source with cargo
@@ -34,7 +34,7 @@ $ cargo install --git https://github.com/tteeoo/rco
 You may need to add `~/.cargo/bin/` to your `PATH` variable in your shell's rc file; this is so you can run `rco` in your shell without specifying the binary's filepath.
 
 
-To uninstall rco when installed by building from source (not via AUR) run the <a href="https://github.com/tteeoo/rco/scripts/uninstall.sh">scripts/uninstall.sh</a> script.
+To uninstall rco when installed by building from source (not via AUR) run the <a href="https://github.com/tteeoo/rco/scripts/blob/master/uninstall.sh">scripts/uninstall.sh</a> script.
 
 # Usage
 
@@ -45,6 +45,7 @@ As already mentioned, you can quickly edit your files by running:
 Edit as root with:
 
 `rco -s nickname`
+
 
 
 
@@ -70,7 +71,7 @@ You can also list all your tracked configuration files by running without cany a
 
 rco's configuration file is located at `~/.config/rco/config.csv`
 
-The default file can be located in the repo at <a href="https://github.com/tteeoo/rco/defaults/config.csv">defaults/config.csv</a>
+The default file can be located in the repo at <a href="https://github.com/tteeoo/rco/blob/master/defaults/config.csv">defaults/config.csv</a>
 
 This is where you can change:
 
@@ -111,7 +112,7 @@ See the projects tab at the top for a more verbose view of what is being worked 
 
 All files are licensced under the MIT License
 
-This can be found in the repo at <a href="https://github.com/tteeoo/rco/LICENSE-MIT">LICENSE-MIT</a>
+This can be found in the repo at <a href="https://github.com/tteeoo/rco/blob/master/LICENSE-MIT">LICENSE-MIT</a>
 
 <hr>
 
