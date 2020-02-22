@@ -43,6 +43,10 @@ To uninstall rco when installed by building from source (not via AUR) run the "s
 
     $ rco nickname 
 
+    Edit as root with:
+
+    $ rco -s nickname
+
 
     You can load configuration files for editing like this:
 
@@ -92,7 +96,7 @@ The default file can be located in the repo at "defaults/config.csv"
 
 			    - src/: all of the source code
 
-			    - defaults/: where the default config and object files are, as well as the license, and a non-markdown README
+			    - defaults/: where the default config and object files are, and a non-markdown README
 
 			    - scripts/: various useful scripts
 			    
@@ -109,7 +113,7 @@ The default file can be located in the repo at "defaults/config.csv"
 					    LICENSE
 
     All files are licensced under the MIT License.
-This can be found in the repo at "defaults/MIT-LICENSE.txt"
+This can be found in the repo at "LICENSE-MIT"
 
 
 	~--------------------------------------------------------------------------------~
