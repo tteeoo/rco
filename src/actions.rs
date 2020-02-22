@@ -37,7 +37,7 @@ pub fn list(obj_vector: &Vec<Vec<String>>, conf_struct: &parse::Conf) {
     else {
         for i in obj_vector {
             for j in i {
-                print!("{}{:->5}", j, "");
+                print!("{}{:>5}", j, "");
             }
             print!("\n");
         }
