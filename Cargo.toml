@@ -1,6 +1,6 @@
 [package]
 name = "rco"
-version = "0.1.4"
+version = "0.1.5"
 authors = ["Theo Henson <theodorehenson@protonmail.com>"]
 edition = "2018"
 

@@ -135,9 +135,14 @@ Options:
 
     -V, --version: Display the current version of rco.
 
+    -s, --sudo: Used before a nickname when editing,
+        opens the file as root, using sudo,
+        e.g., `rco -s nickname`
+
 Edit: Edit the file with corresponding nickname,
     the nickname being the only argument,
     e.g., `rco nickame`
+    Use -s before the nickname to edit as root.
 
 List: Lists all tracked files, ran when provided no arguments,
     e.g., `rco`
@@ -149,7 +154,7 @@ Copyright (c) 2020 Theo Henson <theodorehenson@protonmail.com>, MIT License
 }
 
 // Edit function opens up a file in the chosen editor
-pub fn edit(nickname: &String, conf_struct: &parse::Conf, obj_vector: &Vec<Vec<String>>) {
+pub fn edit(nickname: &String, conf_struct: &parse::Conf, obj_vector: &Vec<Vec<String>>, sudo: bool) {
 
     // Initializes the path variable which represents the path of the file to edit
     let mut path: &String = &"".to_string();
@@ -168,7 +173,12 @@ pub fn edit(nickname: &String, conf_struct: &parse::Conf, obj_vector: &Vec<Vec<S
     }
 
     // Makes a variable for the command to be ran
-    let command = "".to_owned() + &conf_struct.editor + " " + path;
+    let command: String;
+    if sudo {
+        command = "sudo ".to_owned() + &conf_struct.editor + " " + path;
+    } else {
+        command = "".to_owned() + &conf_struct.editor + " " + path;
+    }
 
     // Runs your editor on the path, through a shell
     Command::new(&conf_struct.shell)
@@ -183,6 +193,6 @@ pub fn edit(nickname: &String, conf_struct: &parse::Conf, obj_vector: &Vec<Vec<S
 
 // Function to print the current running version
 pub fn version() {
-    println!("Running rco-0.1.4");
+    println!("Running rco-0.1.5");
     exits::success();
 }

@@ -50,7 +50,7 @@ fn main() {
     } 
 
     // Load
-    else if args[1] == "-l" || args[1] == "--load" {
+    else if (args[1] == "-l" || args[1] == "--load") && args.len() == 5 {
 
         // Make sure nickname isn't duplicate
         for i in objs {
@@ -61,25 +61,12 @@ fn main() {
             }
         }
 
-        // Verify all arguments are provided
-        if args.len() == 5 {
-            actions::load(&args[2], &args[3], &args[4], &obj_name);
-        } 
-        else {
-            exits::arg();
-        }
+        actions::load(&args[2], &args[3], &args[4], &obj_name);
     }
 
     // Unload
-    else if args[1] == "-u" || args[1] == "--unload" {
-
-        // Verify all arguments are provided
-        if args.len() == 3 {
-            actions::unload(&args[2], &obj_name);
-        }
-        else {
-            exits::arg();
-        }
+    else if (args[1] == "-u" || args[1] == "--unload") && args.len() == 3 {
+        actions::unload(&args[2], &obj_name);
     } 
 
     // Help
@@ -94,7 +81,9 @@ fn main() {
 
     // Edit
     else if args.len() == 2 {
-        actions::edit(&args[1], &confs, &objs);
+        actions::edit(&args[1], &confs, &objs, false);
+    } else if args.len() == 3 && (args[1] == "-s" || args[1] == "--sudo") {
+        actions::edit(&args[2], &confs, &objs, true);
     }
 
     // Argument error
