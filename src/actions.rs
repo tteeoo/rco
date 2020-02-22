@@ -135,9 +135,14 @@ Options:
 
     -V, --version: Display the current version of rco.
 
+    -s, --sudo: Used before a nickname when editing,
+        opens the file as root, using sudo,
+        e.g., `rco -s nickname`
+
 Edit: Edit the file with corresponding nickname,
     the nickname being the only argument,
     e.g., `rco nickame`
+    Use -s before the nickname to edit as root.
 
 List: Lists all tracked files, ran when provided no arguments,
     e.g., `rco`
@@ -188,6 +193,6 @@ pub fn edit(nickname: &String, conf_struct: &parse::Conf, obj_vector: &Vec<Vec<S
 
 // Function to print the current running version
 pub fn version() {
-    println!("Running rco-0.1.4");
+    println!("Running rco-0.1.5");
     exits::success();
 }
